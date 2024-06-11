@@ -6,5 +6,7 @@ public class TestGitHub {
     public static void main() {
         TestGitHub t = new TestGitHub();
         System.out.println(t.x);
+        System.out.println(12345);
+
     }
 }
