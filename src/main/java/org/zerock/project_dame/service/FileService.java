@@ -1,14 +1,16 @@
 package org.zerock.project_dame.service;
 
-import com.example.fileupload.model.FileEntity;
-import com.example.fileupload.repository.FileRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.zerock.project_dame.model.FileEntity;
+import org.zerock.project_dame.repository.FileRepository;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+
 
 @Service
 public class FileService {

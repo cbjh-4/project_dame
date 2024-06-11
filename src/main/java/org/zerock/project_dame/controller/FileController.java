@@ -1,18 +1,18 @@
 package org.zerock.project_dame.controller;
 
-import com.example.fileupload.model.FileEntity;
-import com.example.fileupload.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.zerock.project_dame.model.FileEntity;
+import org.zerock.project_dame.service.FileService;
 
 import java.io.IOException;
 import java.util.List;
+
 
 @Controller
 public class FileController {
