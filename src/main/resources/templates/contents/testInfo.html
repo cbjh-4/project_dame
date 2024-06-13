@@ -1,0 +1,117 @@
+<style>
+    .containerInfo {
+        font-family: Arial, sans-serif;
+        background-color: #2C2C2C;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+
+        background-color: #444;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        max-width: 400px;
+        width: 100%;
+    }
+    .containerInfo label, .containerInfo select, .containerInfo input {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .containerInfo input[type="radio"] {
+        display: inline-block;
+        width: auto;
+    }
+    .containerInfo button {
+        width: 100%;
+        padding: 10px;
+        background-color: #555;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-size: 16px;
+    }
+</style>
+
+<div class="containerInfo">
+    <h2>채찍단 다이어트 계산기</h2>
+    <form id="dietForm" action="/calculate" method="post">
+        <label>성별 :</label>
+        <label><input type="radio" name="gender" value="male" checked> 남성</label>
+        <label><input type="radio" name="gender" value="female"> 여성</label>
+
+        <label>나이 (만): <input type="number" name="age" required></label>
+        <label>키 (cm): <input type="number" name="height" required></label>
+        <label>체중 (kg): <input type="number" name="weight" required></label>
+
+        <label>생활습관:</label>
+        <select name="lifestyle" required>
+            <option value="" disabled selected>선택하세요</option>
+            <option value="sedentary">좌식 생활</option>
+            <option value="light">가벼운 활동</option>
+            <option value="moderate">보통 활동</option>
+            <option value="active">활동적</option>
+            <option value="very_active">매우 활동적</option>
+        </select>
+
+        <label>운동 구력:</label>
+        <select name="exercise_experience" required>
+            <option value="" disabled selected>선택하세요</option>
+            <option value="beginner">초보자</option>
+            <option value="intermediate">중급자</option>
+            <option value="advanced">고급자</option>
+        </select>
+
+        <label>운동 횟수:</label>
+        <select name="exercise_frequency" required>
+            <option value="" disabled selected>선택하세요</option>
+            <option value="none">운동 안 함</option>
+            <option value="1-2_times">1-2회</option>
+            <option value="3-4_times">3-4회</option>
+            <option value="5+_times">5회 이상</option>
+        </select>
+
+        <label>체력 수준:</label>
+        <select name="fitness_level" required>
+            <option value="" disabled selected>선택하세요</option>
+            <option value="low">낮음</option>
+            <option value="medium">중간</option>
+            <option value="high">높음</option>
+        </select>
+
+        <button type="submit">계산하기</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('dietForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const form = event.target;
+        const formData = new FormData(form);
+        const data = {};
+
+        formData.forEach((value, key) => {
+            data[key] = value;
+        });
+
+        fetch(form.action, {
+            method: form.method,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+            .then(response => response.json())
+            .then(result => {
+                console.log('Success:', result);
+                // 결과를 처리하는 코드 추가
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
+</script>
